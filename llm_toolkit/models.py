@@ -233,7 +233,7 @@ class LLM:
 class GPT(LLM):
   """OpenAI's GPT model encapsulator."""
 
-  name = 'gpt-3.5-turbo'
+  name = 'deepseek-chat'
 
   def get_model(self) -> Any:
     """Returns the underlying model instance."""
@@ -290,7 +290,7 @@ class GPT(LLM):
 
   def _get_client(self):
     """Returns the OpenAI client."""
-    return openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+    return openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'), base_url="https://api.deepseek.com/v1")
 
   # ================================ Prompt ================================ #
   def estimate_token_num(self, text) -> int:
@@ -1068,4 +1068,4 @@ class AIBinaryModel(GoogleModel):
     return
 
 
-DefaultModel = GeminiV1D5
+DefaultModel = GPT

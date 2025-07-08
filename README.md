@@ -1,3 +1,20 @@
+# Setup
+1. python venv:
+```bash
+$ python3 -m venv .venv
+$ source .venv/bin/activate
+$ pip install -r requirements.txt
+```
+2. Set key
+```bash
+$ export OPENAI_API_KEY='<your-api-key>'
+```
+3. Run for liblouis
+```bash
+$ ./run_all_experiments.py -y ./benchmark-sets/all/liblouis.yaml
+```
+---
+
 # A Framework for Fuzz Target Generation and Evaluation
 
 This framework generates fuzz targets for real-world `C`/`C++/Java/Python` projects with
