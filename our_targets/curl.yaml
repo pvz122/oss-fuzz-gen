@@ -1,0 +1,1125 @@
+"functions":
+- "name": curl_getenv
+  "params":
+  - "name": v
+    "type": char
+  "return_type": char
+  "signature": "/*\n * NAME curl_getenv()\n *\n * DESCRIPTION\n *\n * Returns a malloc()'ed\
+    \ string that MUST be curl_free()ed after usage is\n * complete. DEPRECATED -\
+    \ see lib/README.curlx\n */\nchar *curl_getenv(const char *variable);"
+- "name": curl_slist_free_all
+  "params":
+  - "name": list
+    "type": struct curl_slist
+  "return_type": void
+  "signature": "/*\n * NAME curl_slist_free_all()\n *\n * DESCRIPTION\n *\n * free\
+    \ a previously built curl_slist.\n */\nvoid curl_slist_free_all(struct curl_slist\
+    \ *list);"
+- "name": curl_slist_append
+  "params":
+  - "name": list
+    "type": struct curl_slist
+  - "name": data
+    "type": char
+  "return_type": struct curl_slist
+  "signature": "/*\n * NAME curl_slist_append()\n *\n * DESCRIPTION\n *\n * Appends\
+    \ a string to a linked list. If no list exists, it will be created\n * first.\
+    \ Returns the new list, after appending.\n */\nstruct curl_slist *curl_slist_append(struct\
+    \ curl_slist *list,\n                                                 const char\
+    \ *data);"
+- "name": curl_strequal
+  "params":
+  - "name": first
+    "type": char
+  - "name": second
+    "type": char
+  "return_type": int
+  "signature": "/* curl_strequal() and curl_strnequal() are subject for removal in\
+    \ a future\n   release */\nint curl_strequal(const char *s1, const char *s2);"
+- "name": curl_strnequal
+  "params":
+  - "name": first
+    "type": char
+  - "name": second
+    "type": char
+  - "name": max
+    "type": unsigned long
+  "return_type": int
+  "signature": '
+
+    int curl_strnequal(const char *s1, const char *s2, size_t n);'
+- "name": curl_mime_free
+  "params":
+  - "name": mime
+    "type": struct curl_mime
+  "return_type": void
+  "signature": "/*\n * NAME curl_mime_free()\n *\n * DESCRIPTION\n *\n * release a\
+    \ mime handle and its substructures.\n */\nvoid curl_mime_free(curl_mime *mime);"
+- "name": curl_mime_init
+  "params":
+  - "name": easy
+    "type": void
+  "return_type": struct curl_mime
+  "signature": "/*\n * NAME curl_mime_init()\n *\n * DESCRIPTION\n *\n * Create a\
+    \ mime context and return its handle. The easy parameter is the\n * target handle.\n\
+    \ */\ncurl_mime *curl_mime_init(CURL *easy);"
+- "name": curl_mime_addpart
+  "params":
+  - "name": mime
+    "type": struct curl_mime
+  "return_type": struct curl_mimepart
+  "signature": "/*\n * NAME curl_mime_addpart()\n *\n * DESCRIPTION\n *\n * Append\
+    \ a new empty part to the given mime context and return a handle to\n * the created\
+    \ part.\n */\ncurl_mimepart *curl_mime_addpart(curl_mime *mime);"
+- "name": curl_mime_name
+  "params":
+  - "name": part
+    "type": struct curl_mimepart
+  - "name": name
+    "type": char
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_mime_name()\n *\n * DESCRIPTION\n *\n * Set mime/form\
+    \ part name.\n */\nCURLcode curl_mime_name(curl_mimepart *part, const char *name);"
+- "name": curl_mime_filename
+  "params":
+  - "name": part
+    "type": struct curl_mimepart
+  - "name": filename
+    "type": char
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_mime_filename()\n *\n * DESCRIPTION\n *\n * Set mime\
+    \ part remote filename.\n */\nCURLcode curl_mime_filename(curl_mimepart *part,\n\
+    \                                        const char *filename);"
+- "name": curl_mime_data
+  "params":
+  - "name": part
+    "type": struct curl_mimepart
+  - "name": ptr
+    "type": char
+  - "name": datasize
+    "type": unsigned long
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_mime_data()\n *\n * DESCRIPTION\n *\n * Set mime\
+    \ part data source from memory data,\n */\nCURLcode curl_mime_data(curl_mimepart\
+    \ *part,\n                                    const char *data, size_t datasize);"
+- "name": curl_mime_filedata
+  "params":
+  - "name": part
+    "type": struct curl_mimepart
+  - "name": filename
+    "type": char
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_mime_filedata()\n *\n * DESCRIPTION\n *\n * Set mime\
+    \ part data source from named file.\n */\nCURLcode curl_mime_filedata(curl_mimepart\
+    \ *part,\n                                        const char *filename);"
+- "name": curl_mime_type
+  "params":
+  - "name": part
+    "type": struct curl_mimepart
+  - "name": mimetype
+    "type": char
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_mime_type()\n *\n * DESCRIPTION\n *\n * Set mime\
+    \ part type.\n */\nCURLcode curl_mime_type(curl_mimepart *part, const char *mimetype);"
+- "name": curl_mime_encoder
+  "params":
+  - "name": part
+    "type": struct curl_mimepart
+  - "name": encoding
+    "type": char
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_mime_encoder()\n *\n * DESCRIPTION\n *\n * Set mime\
+    \ data transfer encoder.\n */\nCURLcode curl_mime_encoder(curl_mimepart *part,\n\
+    \                                       const char *encoding);"
+- "name": curl_mime_headers
+  "params":
+  - "name": part
+    "type": struct curl_mimepart
+  - "name": headers
+    "type": struct curl_slist
+  - "name": take_ownership
+    "type": int
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_mime_headers()\n *\n * DESCRIPTION\n *\n * Set mime\
+    \ part headers.\n */\nCURLcode curl_mime_headers(curl_mimepart *part,\n      \
+    \                                 struct curl_slist *headers,\n              \
+    \                         int take_ownership);"
+- "name": curl_mime_data_cb
+  "params":
+  - "name": part
+    "type": struct curl_mimepart
+  - "name": datasize
+    "type": long
+  - "name": readfunc
+    "type": unsigned long (char *, unsigned long, unsigned long, void *)
+  - "name": seekfunc
+    "type": int (void *, long, int)
+  - "name": freefunc
+    "type": void (void *)
+  - "name": arg
+    "type": void
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_mime_data_cb()\n *\n * DESCRIPTION\n *\n * Set mime\
+    \ part data source from callback function.\n */\nCURLcode curl_mime_data_cb(curl_mimepart\
+    \ *part,\n                                       curl_off_t datasize,\n      \
+    \                                 curl_read_callback readfunc,\n             \
+    \                          curl_seek_callback seekfunc,\n                    \
+    \                   curl_free_callback freefunc,\n                           \
+    \            void *arg);"
+- "name": curl_mime_subparts
+  "params":
+  - "name": part
+    "type": struct curl_mimepart
+  - "name": subparts
+    "type": struct curl_mime
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_mime_subparts()\n *\n * DESCRIPTION\n *\n * Set mime\
+    \ part data source from subparts.\n */\nCURLcode curl_mime_subparts(curl_mimepart\
+    \ *part,\n                                        curl_mime *subparts);"
+- "name": curl_share_strerror
+  "params":
+  - "name": error
+    "type": CURLSHcode
+  "return_type": char
+  "signature": "/*\n * NAME curl_share_strerror()\n *\n * DESCRIPTION\n *\n * The\
+    \ curl_share_strerror function may be used to turn a CURLSHcode value\n * into\
+    \ the equivalent human readable error string. This is useful\n * for printing\
+    \ meaningful error messages.\n */\nconst char *curl_share_strerror(CURLSHcode);"
+- "name": curl_easy_strerror
+  "params":
+  - "name": error
+    "type": CURLcode
+  "return_type": char
+  "signature": "/*\n * NAME curl_easy_strerror()\n *\n * DESCRIPTION\n *\n * The curl_easy_strerror\
+    \ function may be used to turn a CURLcode value\n * into the equivalent human\
+    \ readable error string. This is useful\n * for printing meaningful error messages.\n\
+    \ */\nconst char *curl_easy_strerror(CURLcode);"
+- "name": curl_getdate
+  "params":
+  - "name": p
+    "type": char
+  - "name": now
+    "type": long
+  "return_type": long
+  "signature": "/*\n * NAME curl_getdate()\n *\n * DESCRIPTION\n *\n * Returns the\
+    \ time, in seconds since 1 Jan 1970 of the time string given in\n * the first\
+    \ argument. The time argument in the second parameter is unused\n * and should\
+    \ be set to NULL.\n */\ntime_t curl_getdate(const char *p, const time_t *unused);"
+- "name": curl_share_cleanup
+  "params":
+  - "name": sh
+    "type": void
+  "return_type": CURLSHcode
+  "signature": '
+
+    CURLSHcode curl_share_cleanup(CURLSH *share);'
+- "name": curl_share_init
+  "params": []
+  "return_type": void
+  "signature": '
+
+    CURLSH *curl_share_init(void);'
+- "name": curl_share_setopt
+  "params":
+  - "name": sh
+    "type": void
+  - "name": option
+    "type": CURLSHoption
+  "return_type": CURLSHcode
+  "signature": "\nCURLSHcode curl_share_setopt(CURLSH *share, CURLSHoption option,\n\
+    \                                         ...);"
+- "name": curl_easy_pause
+  "params":
+  - "name": d
+    "type": void
+  - "name": action
+    "type": int
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_easy_pause()\n *\n * DESCRIPTION\n *\n * The curl_easy_pause\
+    \ function pauses or unpauses transfers. Select the new\n * state by setting the\
+    \ bitmask, use the convenience defines below.\n *\n */\nCURLcode curl_easy_pause(CURL\
+    \ *handle, int bitmask);"
+- "name": curl_easy_ssls_import
+  "params":
+  - "name": d
+    "type": void
+  - "name": session_key
+    "type": char
+  - "name": shmac
+    "type": unsigned char
+  - "name": shmac_len
+    "type": unsigned long
+  - "name": sdata
+    "type": unsigned char
+  - "name": sdata_len
+    "type": unsigned long
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_easy_ssls_import()\n *\n * DESCRIPTION\n *\n * The\
+    \ curl_easy_ssls_import function adds a previously exported SSL session\n * to\
+    \ the SSL session cache of the easy handle (or the underlying share).\n */\nCURLcode\
+    \ curl_easy_ssls_import(CURL *handle,\n                                      \
+    \     const char *session_key,\n                                           const\
+    \ unsigned char *shmac,\n                                           size_t shmac_len,\n\
+    \                                           const unsigned char *sdata,\n    \
+    \                                       size_t sdata_len);"
+- "name": curl_easy_ssls_export
+  "params":
+  - "name": d
+    "type": void
+  - "name": export_fn
+    "type": CURLcode (void *, void *, const char *, const unsigned char *, unsigned
+      long, const unsigned char *, unsigned long, long, int, const char *, unsigned
+      long)
+  - "name": userptr
+    "type": void
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_easy_ssls_export()\n *\n * DESCRIPTION\n *\n * The\
+    \ curl_easy_ssls_export function iterates over all SSL sessions stored\n * in\
+    \ the easy handle (or underlying share) and invokes the passed\n * callback.\n\
+    \ *\n */\nCURLcode curl_easy_ssls_export(CURL *handle,\n                     \
+    \                      curl_ssls_export_cb *export_fn,\n                     \
+    \                      void *userptr);"
+- "name": curl_global_init
+  "params":
+  - "name": flags
+    "type": long
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_global_init()\n *\n * DESCRIPTION\n *\n * curl_global_init()\
+    \ should be invoked exactly once for each application that\n * uses libcurl and\
+    \ before any call of other libcurl functions.\n\n * This function is thread-safe\
+    \ if CURL_VERSION_THREADSAFE is set in the\n * curl_version_info_data.features\
+    \ flag (fetch by curl_version_info()).\n\n */\nCURLcode curl_global_init(long\
+    \ flags);"
+- "name": curl_global_init_mem
+  "params":
+  - "name": flags
+    "type": long
+  - "name": m
+    "type": void *(unsigned long)
+  - "name": f
+    "type": void (void *)
+  - "name": r
+    "type": void *(void *, unsigned long)
+  - "name": s
+    "type": char *(const char *)
+  - "name": c
+    "type": void *(unsigned long, unsigned long)
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_global_init_mem()\n *\n * DESCRIPTION\n *\n * curl_global_init()\
+    \ or curl_global_init_mem() should be invoked exactly once\n * for each application\
+    \ that uses libcurl. This function can be used to\n * initialize libcurl and set\
+    \ user defined memory management callback\n * functions. Users can implement memory\
+    \ management routines to check for\n * memory leaks, check for mis-use of the\
+    \ curl library etc. User registered\n * callback routines will be invoked by this\
+    \ library instead of the system\n * memory management routines like malloc, free\
+    \ etc.\n */\nCURLcode curl_global_init_mem(long flags,\n                     \
+    \                     curl_malloc_callback m,\n                              \
+    \            curl_free_callback f,\n                                         \
+    \ curl_realloc_callback r,\n                                          curl_strdup_callback\
+    \ s,\n                                          curl_calloc_callback c);"
+- "name": curl_global_cleanup
+  "params": []
+  "return_type": void
+  "signature": "/*\n * NAME curl_global_cleanup()\n *\n * DESCRIPTION\n *\n * curl_global_cleanup()\
+    \ should be invoked exactly once for each application\n * that uses libcurl\n\
+    \ */\nvoid curl_global_cleanup(void);"
+- "name": curl_global_trace
+  "params":
+  - "name": config
+    "type": char
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_global_trace()\n *\n * DESCRIPTION\n *\n * curl_global_trace()\
+    \ can be invoked at application start to\n * configure which components in curl\
+    \ should participate in tracing.\n\n * This function is thread-safe if CURL_VERSION_THREADSAFE\
+    \ is set in the\n * curl_version_info_data.features flag (fetch by curl_version_info()).\n\
+    \n */\nCURLcode curl_global_trace(const char *config);"
+- "name": curl_global_sslset
+  "params":
+  - "name": id
+    "type": curl_sslbackend
+  - "name": name
+    "type": char
+  - "name": avail
+    "type": struct curl_ssl_backend
+  "return_type": CURLsslset
+  "signature": "\nCURLsslset curl_global_sslset(curl_sslbackend id, const char *name,\n\
+    \                                          const curl_ssl_backend ***avail);"
+- "name": curl_version
+  "params": []
+  "return_type": char
+  "signature": "/*\n * NAME curl_version()\n *\n * DESCRIPTION\n *\n * Returns a static\
+    \ ASCII string of the libcurl version.\n */\nchar *curl_version(void);"
+- "name": curl_version_info
+  "params":
+  - "name": stamp
+    "type": CURLversion
+  "return_type": struct curl_version_info_data
+  "signature": "/*\n * NAME curl_version_info()\n *\n * DESCRIPTION\n *\n * This function\
+    \ returns a pointer to a static copy of the version info\n * struct. See above.\n\
+    \ */\ncurl_version_info_data *curl_version_info(CURLversion);"
+- "name": curl_easy_unescape
+  "params":
+  - "name": data
+    "type": void
+  - "name": string
+    "type": char
+  - "name": length
+    "type": int
+  - "name": olen
+    "type": int
+  "return_type": char
+  "signature": "/*\n * NAME curl_easy_unescape()\n *\n * DESCRIPTION\n *\n * Unescapes\
+    \ URL encoding in strings (converts all %XX codes to their 8bit\n * versions).\
+    \ This function returns a new allocated string or NULL if an error\n * occurred.\n\
+    \ * Conversion Note: On non-ASCII platforms the ASCII %XX codes are\n * converted\
+    \ into the host encoding.\n */\nchar *curl_easy_unescape(CURL *handle,\n     \
+    \                                const char *string,\n                       \
+    \              int length,\n                                     int *outlength);"
+- "name": curl_free
+  "params":
+  - "name": p
+    "type": void
+  "return_type": void
+  "signature": "/*\n * NAME curl_free()\n *\n * DESCRIPTION\n *\n * Provided for de-allocation\
+    \ in the same translation unit that did the\n * allocation. Added in libcurl 7.10\n\
+    \ */\nvoid curl_free(void *p);"
+- "name": curl_escape
+  "params":
+  - "name": string
+    "type": char
+  - "name": inlength
+    "type": int
+  "return_type": char
+  "signature": "/* the previous version: */\nchar *curl_escape(const char *string,\n\
+    \                              int length);"
+- "name": curl_unescape
+  "params":
+  - "name": string
+    "type": char
+  - "name": length
+    "type": int
+  "return_type": char
+  "signature": "/* the previous version */\nchar *curl_unescape(const char *string,\n\
+    \                                int length);"
+- "name": curl_easy_escape
+  "params":
+  - "name": data
+    "type": void
+  - "name": string
+    "type": char
+  - "name": inlength
+    "type": int
+  "return_type": char
+  "signature": "/*\n * NAME curl_easy_escape()\n *\n * DESCRIPTION\n *\n * Escapes\
+    \ URL strings (converts all letters consider illegal in URLs to their\n * %XX\
+    \ versions). This function returns a new allocated string or NULL if an\n * error\
+    \ occurred.\n */\nchar *curl_easy_escape(CURL *handle,\n                     \
+    \              const char *string,\n                                   int length);"
+- "name": curl_formadd
+  "params":
+  - "name": httppost
+    "type": struct curl_httppost
+  - "name": last_post
+    "type": struct curl_httppost
+  "return_type": CURLFORMcode
+  "signature": "/*\n * NAME curl_formadd()\n *\n * DESCRIPTION\n *\n * Pretty advanced\
+    \ function for building multi-part formposts. Each invoke\n * adds one part that\
+    \ together construct a full post. Then use\n * CURLOPT_HTTPPOST to send it off\
+    \ to libcurl.\n */\nCURLFORMcode CURL_DEPRECATED(7.56.0, \"Use curl_mime_init()\"\
+    )\ncurl_formadd(struct curl_httppost **httppost,\n             struct curl_httppost\
+    \ **last_post,\n             ...);"
+- "name": curl_formget
+  "params":
+  - "name": form
+    "type": struct curl_httppost
+  - "name": arg
+    "type": void
+  - "name": append
+    "type": unsigned long (void *, const char *, unsigned long)
+  "return_type": int
+  "signature": "/*\n * NAME curl_formget()\n *\n * DESCRIPTION\n *\n * Serialize a\
+    \ curl_httppost struct built with curl_formadd().\n * Accepts a void pointer as\
+    \ second argument which will be passed to\n * the curl_formget_callback function.\n\
+    \ * Returns 0 on success.\n */\nint CURL_DEPRECATED(7.56.0, \"\")\ncurl_formget(struct\
+    \ curl_httppost *form, void *arg,\n             curl_formget_callback append);"
+- "name": curl_formfree
+  "params":
+  - "name": form
+    "type": struct curl_httppost
+  "return_type": void
+  "signature": "/*\n * NAME curl_formfree()\n *\n * DESCRIPTION\n *\n * Free a multipart\
+    \ formpost previously built with curl_formadd().\n */\nvoid CURL_DEPRECATED(7.56.0,\
+    \ \"Use curl_mime_free()\")\ncurl_formfree(struct curl_httppost *form);"
+- "name": curl_easy_nextheader
+  "params":
+  - "name": easy
+    "type": void
+  - "name": type
+    "type": unsigned int
+  - "name": request
+    "type": int
+  - "name": prev
+    "type": struct curl_header
+  "return_type": struct curl_header
+  "signature": "\nstruct curl_header *curl_easy_nextheader(CURL *easy,\n         \
+    \                                            unsigned int origin,\n          \
+    \                                           int request,\n                   \
+    \                                  struct curl_header *prev);"
+- "name": curl_easy_header
+  "params":
+  - "name": easy
+    "type": void
+  - "name": name
+    "type": char
+  - "name": nameindex
+    "type": unsigned long
+  - "name": type
+    "type": unsigned int
+  - "name": request
+    "type": int
+  - "name": hout
+    "type": struct curl_header
+  "return_type": CURLHcode
+  "signature": "\nCURLHcode curl_easy_header(CURL *easy,\n                       \
+    \                const char *name,\n                                       size_t\
+    \ index,\n                                       unsigned int origin,\n      \
+    \                                 int request,\n                             \
+    \          struct curl_header **hout);"
+- "name": curl_ws_recv
+  "params":
+  - "name": d
+    "type": void
+  - "name": buffer
+    "type": void
+  - "name": buflen
+    "type": unsigned long
+  - "name": nread
+    "type": unsigned long
+  - "name": metap
+    "type": struct curl_ws_frame
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_ws_recv()\n *\n * DESCRIPTION\n *\n * Receives data\
+    \ from the websocket connection. Use after successful\n * curl_easy_perform()\
+    \ with CURLOPT_CONNECT_ONLY option.\n */\nCURLcode curl_ws_recv(CURL *curl, void\
+    \ *buffer, size_t buflen,\n                                  size_t *recv,\n \
+    \                                 const struct curl_ws_frame **metap);"
+- "name": curl_ws_send
+  "params":
+  - "name": d
+    "type": void
+  - "name": buffer_arg
+    "type": void
+  - "name": buflen
+    "type": unsigned long
+  - "name": sent
+    "type": unsigned long
+  - "name": fragsize
+    "type": long
+  - "name": flags
+    "type": unsigned int
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_ws_send()\n *\n * DESCRIPTION\n *\n * Sends data\
+    \ over the websocket connection. Use after successful\n * curl_easy_perform()\
+    \ with CURLOPT_CONNECT_ONLY option.\n */\nCURLcode curl_ws_send(CURL *curl, const\
+    \ void *buffer,\n                                  size_t buflen, size_t *sent,\n\
+    \                                  curl_off_t fragsize,\n                    \
+    \              unsigned int flags);"
+- "name": curl_ws_meta
+  "params":
+  - "name": d
+    "type": void
+  "return_type": struct curl_ws_frame
+  "signature": '
+
+    const struct curl_ws_frame *curl_ws_meta(CURL *curl);'
+- "name": curl_multi_strerror
+  "params":
+  - "name": error
+    "type": CURLMcode
+  "return_type": char
+  "signature": "/*\n * Name:    curl_multi_strerror()\n *\n * Desc:    The curl_multi_strerror\
+    \ function may be used to turn a CURLMcode\n *          value into the equivalent\
+    \ human readable error string. This is\n *          useful for printing meaningful\
+    \ error messages.\n *\n * Returns: A pointer to a null-terminated error message.\n\
+    \ */\nconst char *curl_multi_strerror(CURLMcode);"
+- "name": curl_pushheader_bynum
+  "params":
+  - "name": h
+    "type": struct curl_pushheaders
+  - "name": num
+    "type": unsigned long
+  "return_type": char
+  "signature": "\nchar *curl_pushheader_bynum(struct curl_pushheaders *h,\n      \
+    \                                  size_t num);"
+- "name": curl_pushheader_byname
+  "params":
+  - "name": h
+    "type": struct curl_pushheaders
+  - "name": header
+    "type": char
+  "return_type": char
+  "signature": "\nchar *curl_pushheader_byname(struct curl_pushheaders *h,\n     \
+    \                                    const char *name);"
+- "name": curl_multi_fdset
+  "params":
+  - "name": m
+    "type": void
+  - "name": read_fd_set
+    "type": fd_set
+  - "name": write_fd_set
+    "type": fd_set
+  - "name": exc_fd_set
+    "type": fd_set
+  - "name": max_fd
+    "type": int
+  "return_type": CURLMcode
+  "signature": "/*\n  * Name:    curl_multi_fdset()\n  *\n  * Desc:    Ask curl for\
+    \ its fd_set sets. The app can use these to select() or\n  *          poll() on.\
+    \ We want curl_multi_perform() called as soon as one of\n  *          them are\
+    \ ready.\n  *\n  * Returns: CURLMcode type, general multi error code.\n  */\n\
+    CURLMcode curl_multi_fdset(CURLM *multi_handle,\n                            \
+    \           fd_set *read_fd_set,\n                                       fd_set\
+    \ *write_fd_set,\n                                       fd_set *exc_fd_set,\n\
+    \                                       int *max_fd);"
+- "name": curl_multi_waitfds
+  "params":
+  - "name": m
+    "type": void
+  - "name": ufds
+    "type": struct curl_waitfd
+  - "name": size
+    "type": unsigned int
+  - "name": fd_count
+    "type": unsigned int
+  "return_type": CURLMcode
+  "signature": "/*\n * Name:    curl_multi_waitfds()\n *\n * Desc:    Ask curl for\
+    \ fds for polling. The app can use these to poll on.\n *          We want curl_multi_perform()\
+    \ called as soon as one of them are\n *          ready. Passing zero size allows\
+    \ to get just a number of fds.\n *\n * Returns: CURLMcode type, general multi\
+    \ error code.\n */\nCURLMcode curl_multi_waitfds(CURLM *multi,\n             \
+    \                            struct curl_waitfd *ufds,\n                     \
+    \                    unsigned int size,\n                                    \
+    \     unsigned int *fd_count);"
+- "name": curl_multi_wait
+  "params":
+  - "name": multi
+    "type": void
+  - "name": extra_fds
+    "type": struct curl_waitfd
+  - "name": extra_nfds
+    "type": unsigned int
+  - "name": timeout_ms
+    "type": int
+  - "name": ret
+    "type": int
+  "return_type": CURLMcode
+  "signature": "/*\n * Name:     curl_multi_wait()\n *\n * Desc:     Poll on all fds\
+    \ within a CURLM set as well as any\n *           additional fds passed to the\
+    \ function.\n *\n * Returns:  CURLMcode type, general multi error code.\n */\n\
+    CURLMcode curl_multi_wait(CURLM *multi_handle,\n                             \
+    \         struct curl_waitfd extra_fds[],\n                                  \
+    \    unsigned int extra_nfds,\n                                      int timeout_ms,\n\
+    \                                      int *ret);"
+- "name": curl_multi_poll
+  "params":
+  - "name": multi
+    "type": void
+  - "name": extra_fds
+    "type": struct curl_waitfd
+  - "name": extra_nfds
+    "type": unsigned int
+  - "name": timeout_ms
+    "type": int
+  - "name": ret
+    "type": int
+  "return_type": CURLMcode
+  "signature": "/*\n * Name:     curl_multi_poll()\n *\n * Desc:     Poll on all fds\
+    \ within a CURLM set as well as any\n *           additional fds passed to the\
+    \ function.\n *\n * Returns:  CURLMcode type, general multi error code.\n */\n\
+    CURLMcode curl_multi_poll(CURLM *multi_handle,\n                             \
+    \         struct curl_waitfd extra_fds[],\n                                  \
+    \    unsigned int extra_nfds,\n                                      int timeout_ms,\n\
+    \                                      int *ret);"
+- "name": curl_multi_wakeup
+  "params":
+  - "name": m
+    "type": void
+  "return_type": CURLMcode
+  "signature": "/*\n * Name:     curl_multi_wakeup()\n *\n * Desc:     wakes up a\
+    \ sleeping curl_multi_poll call.\n *\n * Returns:  CURLMcode type, general multi\
+    \ error code.\n */\nCURLMcode curl_multi_wakeup(CURLM *multi_handle);"
+- "name": curl_multi_perform
+  "params":
+  - "name": m
+    "type": void
+  - "name": running_handles
+    "type": int
+  "return_type": CURLMcode
+  "signature": "/*\n  * Name:    curl_multi_perform()\n  *\n  * Desc:    When the\
+    \ app thinks there is data available for curl it calls this\n  *          function\
+    \ to read/write whatever there is right now. This returns\n  *          as soon\
+    \ as the reads and writes are done. This function does not\n  *          require\
+    \ that there actually is data available for reading or that\n  *          data\
+    \ can be written, it can be called just in case. It returns\n  *          the\
+    \ number of handles that still transfer data in the second\n  *          argument's\
+    \ integer-pointer.\n  *\n  * Returns: CURLMcode type, general multi error code.\
+    \ *NOTE* that this only\n  *          returns errors etc regarding the whole multi\
+    \ stack. There might\n  *          still have occurred problems on individual\
+    \ transfers even when\n  *          this returns OK.\n  */\nCURLMcode curl_multi_perform(CURLM\
+    \ *multi_handle,\n                                         int *running_handles);"
+- "name": curl_multi_cleanup
+  "params":
+  - "name": m
+    "type": void
+  "return_type": CURLMcode
+  "signature": "/*\n  * Name:    curl_multi_cleanup()\n  *\n  * Desc:    Cleans up\
+    \ and removes a whole multi stack. It does not free or\n  *          touch any\
+    \ individual easy handles in any way. We need to define\n  *          in what\
+    \ state those handles will be if this function is called\n  *          in the\
+    \ middle of a transfer.\n  *\n  * Returns: CURLMcode type, general multi error\
+    \ code.\n  */\nCURLMcode curl_multi_cleanup(CURLM *multi_handle);"
+- "name": curl_multi_info_read
+  "params":
+  - "name": m
+    "type": void
+  - "name": msgs_in_queue
+    "type": int
+  "return_type": struct CURLMsg
+  "signature": "/*\n * Name:    curl_multi_info_read()\n *\n * Desc:    Ask the multi\
+    \ handle if there is any messages/informationals from\n *          the individual\
+    \ transfers. Messages include informationals such as\n *          error code from\
+    \ the transfer or just the fact that a transfer is\n *          completed. More\
+    \ details on these should be written down as well.\n *\n *          Repeated calls\
+    \ to this function will return a new struct each\n *          time, until a special\
+    \ \"end of msgs\" struct is returned as a signal\n *          that there is no\
+    \ more to get at this point.\n *\n *          The data the returned pointer points\
+    \ to will not survive calling\n *          curl_multi_cleanup().\n *\n *     \
+    \     The 'CURLMsg' struct is meant to be simple and only contain basic\n *  \
+    \        information. If more involved information is wanted, we will\n *    \
+    \      provide the particular \"transfer handle\" in that struct and that\n *\
+    \          should/could/would be used in subsequent curl_easy_getinfo() calls\n\
+    \ *          (or similar). The point being that we must never expose complex\n\
+    \ *          structs to applications, as then we will undoubtably get backwards\n\
+    \ *          compatibility problems in the future.\n *\n * Returns: A pointer\
+    \ to a filled-in struct, or NULL if it failed or ran out\n *          of structs.\
+    \ It also writes the number of messages left in the\n *          queue (after\
+    \ this read) in the integer the second argument points\n *          to.\n */\n\
+    CURLMsg *curl_multi_info_read(CURLM *multi_handle,\n                         \
+    \                 int *msgs_in_queue);"
+- "name": curl_multi_setopt
+  "params":
+  - "name": m
+    "type": void
+  - "name": option
+    "type": CURLMoption
+  "return_type": CURLMcode
+  "signature": "/*\n * Name:    curl_multi_setopt()\n *\n * Desc:    Sets options\
+    \ for the multi handle.\n *\n * Returns: CURLM error code.\n */\nCURLMcode curl_multi_setopt(CURLM\
+    \ *multi_handle,\n                                        CURLMoption option,\
+    \ ...);"
+- "name": curl_multi_init
+  "params": []
+  "return_type": void
+  "signature": "/*\n * Name:    curl_multi_init()\n *\n * Desc:    initialize multi-style\
+    \ curl usage\n *\n * Returns: a new CURLM handle to use in all 'curl_multi' functions.\n\
+    \ */\nCURLM *curl_multi_init(void);"
+- "name": curl_multi_socket
+  "params":
+  - "name": m
+    "type": void
+  - "name": s
+    "type": int
+  - "name": running_handles
+    "type": int
+  "return_type": CURLMcode
+  "signature": '
+
+    CURLMcode CURL_DEPRECATED(7.19.5, "Use curl_multi_socket_action()")
+
+    curl_multi_socket(CURLM *multi_handle, curl_socket_t s, int *running_handles);'
+- "name": curl_multi_socket_action
+  "params":
+  - "name": m
+    "type": void
+  - "name": s
+    "type": int
+  - "name": ev_bitmask
+    "type": int
+  - "name": running_handles
+    "type": int
+  "return_type": CURLMcode
+  "signature": "\nCURLMcode curl_multi_socket_action(CURLM *multi_handle,\n      \
+    \                                         curl_socket_t s,\n                 \
+    \                              int ev_bitmask,\n                             \
+    \                  int *running_handles);"
+- "name": curl_multi_socket_all
+  "params":
+  - "name": m
+    "type": void
+  - "name": running_handles
+    "type": int
+  "return_type": CURLMcode
+  "signature": '
+
+    CURLMcode CURL_DEPRECATED(7.19.5, "Use curl_multi_socket_action()")
+
+    curl_multi_socket_all(CURLM *multi_handle, int *running_handles);'
+- "name": curl_multi_timeout
+  "params":
+  - "name": m
+    "type": void
+  - "name": timeout_ms
+    "type": long
+  "return_type": CURLMcode
+  "signature": "/*\n * Name:    curl_multi_timeout()\n *\n * Desc:    Returns the\
+    \ maximum number of milliseconds the app is allowed to\n *          wait before\
+    \ curl_multi_socket() or curl_multi_perform() must be\n *          called (to\
+    \ allow libcurl's timed events to take place).\n *\n * Returns: CURLM error code.\n\
+    \ */\nCURLMcode curl_multi_timeout(CURLM *multi_handle,\n                    \
+    \                     long *milliseconds);"
+- "name": curl_multi_assign
+  "params":
+  - "name": m
+    "type": void
+  - "name": s
+    "type": int
+  - "name": hashp
+    "type": void
+  "return_type": CURLMcode
+  "signature": "/*\n * Name:    curl_multi_assign()\n *\n * Desc:    This function\
+    \ sets an association in the multi handle between the\n *          given socket\
+    \ and a private pointer of the application. This is\n *          (only) useful\
+    \ for curl_multi_socket uses.\n *\n * Returns: CURLM error code.\n */\nCURLMcode\
+    \ curl_multi_assign(CURLM *multi_handle,\n                                   \
+    \     curl_socket_t sockfd, void *sockp);"
+- "name": curl_multi_get_handles
+  "params":
+  - "name": m
+    "type": void
+  "return_type": void
+  "signature": "/*\n * Name:    curl_multi_get_handles()\n *\n * Desc:    Returns\
+    \ an allocated array holding all handles currently added to\n *          the multi\
+    \ handle. Marks the final entry with a NULL pointer. If\n *          there is\
+    \ no easy handle added to the multi handle, this function\n *          returns\
+    \ an array with the first entry as a NULL pointer.\n *\n * Returns: NULL on failure,\
+    \ otherwise a CURL **array pointer\n */\nCURL **curl_multi_get_handles(CURLM *multi_handle);"
+- "name": curl_multi_add_handle
+  "params":
+  - "name": m
+    "type": void
+  - "name": d
+    "type": void
+  "return_type": CURLMcode
+  "signature": "/*\n * Name:    curl_multi_add_handle()\n *\n * Desc:    add a standard\
+    \ curl handle to the multi stack\n *\n * Returns: CURLMcode type, general multi\
+    \ error code.\n */\nCURLMcode curl_multi_add_handle(CURLM *multi_handle,\n   \
+    \                                         CURL *curl_handle);"
+- "name": curl_multi_remove_handle
+  "params":
+  - "name": m
+    "type": void
+  - "name": d
+    "type": void
+  "return_type": CURLMcode
+  "signature": "/*\n  * Name:    curl_multi_remove_handle()\n  *\n  * Desc:    removes\
+    \ a curl handle from the multi stack again\n  *\n  * Returns: CURLMcode type,\
+    \ general multi error code.\n  */\nCURLMcode curl_multi_remove_handle(CURLM *multi_handle,\n\
+    \                                               CURL *curl_handle);"
+- "name": curl_url_strerror
+  "params":
+  - "name": error
+    "type": CURLUcode
+  "return_type": char
+  "signature": "/*\n * curl_url_strerror() turns a CURLUcode value into the equivalent\
+    \ human\n * readable error string. This is useful for printing meaningful error\n\
+    \ * messages.\n */\nconst char *curl_url_strerror(CURLUcode);"
+- "name": curl_url
+  "params": []
+  "return_type": struct Curl_URL
+  "signature": "/*\n * curl_url() creates a new CURLU handle and returns a pointer\
+    \ to it.\n * Must be freed with curl_url_cleanup().\n */\nCURLU *curl_url(void);"
+- "name": curl_url_cleanup
+  "params":
+  - "name": u
+    "type": struct Curl_URL
+  "return_type": void
+  "signature": "/*\n * curl_url_cleanup() frees the CURLU handle and related resources\
+    \ used for\n * the URL parsing. It will not free strings previously returned with\
+    \ the URL\n * API.\n */\nvoid curl_url_cleanup(CURLU *handle);"
+- "name": curl_url_dup
+  "params":
+  - "name": in
+    "type": struct Curl_URL
+  "return_type": struct Curl_URL
+  "signature": "/*\n * curl_url_dup() duplicates a CURLU handle and returns a new\
+    \ copy. The new\n * handle must also be freed with curl_url_cleanup().\n */\n\
+    CURLU *curl_url_dup(const CURLU *in);"
+- "name": curl_url_get
+  "params":
+  - "name": u
+    "type": struct Curl_URL
+  - "name": what
+    "type": CURLUPart
+  - "name": part
+    "type": char
+  - "name": flags
+    "type": unsigned int
+  "return_type": CURLUcode
+  "signature": "/*\n * curl_url_get() extracts a specific part of the URL from a CURLU\n\
+    \ * handle. Returns error code. The returned pointer MUST be freed with\n * curl_free()\
+    \ afterwards.\n */\nCURLUcode curl_url_get(const CURLU *handle, CURLUPart what,\n\
+    \                                   char **part, unsigned int flags);"
+- "name": curl_url_set
+  "params":
+  - "name": u
+    "type": struct Curl_URL
+  - "name": what
+    "type": CURLUPart
+  - "name": part
+    "type": char
+  - "name": flags
+    "type": unsigned int
+  "return_type": CURLUcode
+  "signature": "/*\n * curl_url_set() sets a specific part of the URL in a CURLU handle.\
+    \ Returns\n * error code. The passed in string will be copied. Passing a NULL\
+    \ instead of\n * a part string, clears that part.\n */\nCURLUcode curl_url_set(CURLU\
+    \ *handle, CURLUPart what,\n                                   const char *part,\
+    \ unsigned int flags);"
+- "name": curl_mvsnprintf
+  "params":
+  - "name": buffer
+    "type": char
+  - "name": maxlength
+    "type": unsigned long
+  - "name": format
+    "type": char
+  - "name": ap_save
+    "type": struct __va_list_tag
+  "return_type": int
+  "signature": "\nint curl_mvsnprintf(char *buffer, size_t maxlength,\n          \
+    \                      const char *format, va_list args)\n  CURL_TEMP_PRINTF(3,\
+    \ 0);"
+- "name": curl_msnprintf
+  "params":
+  - "name": buffer
+    "type": char
+  - "name": maxlength
+    "type": unsigned long
+  - "name": format
+    "type": char
+  "return_type": int
+  "signature": "\nint curl_msnprintf(char *buffer, size_t maxlength,\n           \
+    \                    const char *format, ...)\n  CURL_TEMP_PRINTF(3, 4);"
+- "name": curl_mvaprintf
+  "params":
+  - "name": format
+    "type": char
+  - "name": ap_save
+    "type": struct __va_list_tag
+  "return_type": char
+  "signature": "\nchar *curl_mvaprintf(const char *format, va_list args)\n  CURL_TEMP_PRINTF(1,\
+    \ 0);"
+- "name": curl_maprintf
+  "params":
+  - "name": format
+    "type": char
+  "return_type": char
+  "signature": "\nchar *curl_maprintf(const char *format, ...)\n  CURL_TEMP_PRINTF(1,\
+    \ 2);"
+- "name": curl_msprintf
+  "params":
+  - "name": buffer
+    "type": char
+  - "name": format
+    "type": char
+  "return_type": int
+  "signature": "\nint curl_msprintf(char *buffer, const char *format, ...)\n  CURL_TEMP_PRINTF(2,\
+    \ 3);"
+- "name": curl_mprintf
+  "params":
+  - "name": format
+    "type": char
+  "return_type": int
+  "signature": "\nint curl_mprintf(const char *format, ...)\n  CURL_TEMP_PRINTF(1,\
+    \ 2);"
+- "name": curl_mfprintf
+  "params":
+  - "name": whereto
+    "type": struct _IO_FILE
+  - "name": format
+    "type": char
+  "return_type": int
+  "signature": "\nint curl_mfprintf(FILE *fd, const char *format, ...)\n  CURL_TEMP_PRINTF(2,\
+    \ 3);"
+- "name": curl_mvsprintf
+  "params":
+  - "name": buffer
+    "type": char
+  - "name": format
+    "type": char
+  - "name": ap_save
+    "type": struct __va_list_tag
+  "return_type": int
+  "signature": "\nint curl_mvsprintf(char *buffer, const char *format, va_list args)\n\
+    \  CURL_TEMP_PRINTF(2, 0);"
+- "name": curl_mvprintf
+  "params":
+  - "name": format
+    "type": char
+  - "name": ap_save
+    "type": struct __va_list_tag
+  "return_type": int
+  "signature": "\nint curl_mvprintf(const char *format, va_list args)\n  CURL_TEMP_PRINTF(1,\
+    \ 0);"
+- "name": curl_mvfprintf
+  "params":
+  - "name": whereto
+    "type": struct _IO_FILE
+  - "name": format
+    "type": char
+  - "name": ap_save
+    "type": struct __va_list_tag
+  "return_type": int
+  "signature": "\nint curl_mvfprintf(FILE *fd, const char *format, va_list args)\n\
+    \  CURL_TEMP_PRINTF(2, 0);"
+- "name": curl_easy_setopt
+  "params":
+  - "name": d
+    "type": void
+  - "name": tag
+    "type": CURLoption
+  "return_type": CURLcode
+  "signature": '
+
+    CURLcode curl_easy_setopt(CURL *curl, CURLoption option, ...);'
+- "name": curl_easy_reset
+  "params":
+  - "name": d
+    "type": void
+  "return_type": void
+  "signature": "/*\n * NAME curl_easy_reset()\n *\n * DESCRIPTION\n *\n * Re-initializes\
+    \ a curl handle to the default values. This puts back the\n * handle to the same\
+    \ state as it was in when it was just created.\n *\n * It does keep: live connections,\
+    \ the Session ID cache, the DNS cache and the\n * cookies.\n */\nvoid curl_easy_reset(CURL\
+    \ *curl);"
+- "name": curl_easy_recv
+  "params":
+  - "name": d
+    "type": void
+  - "name": buffer
+    "type": void
+  - "name": buflen
+    "type": unsigned long
+  - "name": n
+    "type": unsigned long
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_easy_recv()\n *\n * DESCRIPTION\n *\n * Receives\
+    \ data from the connected socket. Use after successful\n * curl_easy_perform()\
+    \ with CURLOPT_CONNECT_ONLY option.\n */\nCURLcode curl_easy_recv(CURL *curl,\
+    \ void *buffer, size_t buflen,\n                                    size_t *n);"
+- "name": curl_easy_send
+  "params":
+  - "name": d
+    "type": void
+  - "name": buffer
+    "type": void
+  - "name": buflen
+    "type": unsigned long
+  - "name": n
+    "type": unsigned long
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_easy_send()\n *\n * DESCRIPTION\n *\n * Sends data\
+    \ over the connected socket. Use after successful\n * curl_easy_perform() with\
+    \ CURLOPT_CONNECT_ONLY option.\n */\nCURLcode curl_easy_send(CURL *curl, const\
+    \ void *buffer,\n                                    size_t buflen, size_t *n);"
+- "name": curl_easy_upkeep
+  "params":
+  - "name": d
+    "type": void
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_easy_upkeep()\n *\n * DESCRIPTION\n *\n * Performs\
+    \ connection upkeep for the given session handle.\n */\nCURLcode curl_easy_upkeep(CURL\
+    \ *curl);"
+- "name": curl_easy_init
+  "params": []
+  "return_type": void
+  "signature": '
+
+    CURL *curl_easy_init(void);'
+- "name": curl_easy_perform
+  "params":
+  - "name": data
+    "type": void
+  "return_type": CURLcode
+  "signature": '
+
+    CURLcode curl_easy_perform(CURL *curl);'
+- "name": curl_easy_cleanup
+  "params":
+  - "name": ptr
+    "type": void
+  "return_type": void
+  "signature": '
+
+    void curl_easy_cleanup(CURL *curl);'
+- "name": curl_easy_getinfo
+  "params":
+  - "name": data
+    "type": void
+  - "name": info
+    "type": CURLINFO
+  "return_type": CURLcode
+  "signature": "/*\n * NAME curl_easy_getinfo()\n *\n * DESCRIPTION\n *\n * Request\
+    \ internal information from the curl session with this function.\n * The third\
+    \ argument MUST be pointing to the specific type of the used option\n * which\
+    \ is documented in each manpage of the option. The data pointed to\n * will be\
+    \ filled in accordingly and can be relied upon only if the function\n * returns\
+    \ CURLE_OK. This function is intended to get used *AFTER* a performed\n * transfer,\
+    \ all results from this function are undefined until the transfer\n * is completed.\n\
+    \ */\nCURLcode curl_easy_getinfo(CURL *curl, CURLINFO info, ...);"
+- "name": curl_easy_duphandle
+  "params":
+  - "name": d
+    "type": void
+  "return_type": void
+  "signature": "/*\n * NAME curl_easy_duphandle()\n *\n * DESCRIPTION\n *\n * Creates\
+    \ a new curl session handle with the same options set for the handle\n * passed\
+    \ in. Duplicating a handle could only be a matter of cloning data and\n * options,\
+    \ internal state info and things like persistent connections cannot\n * be transferred.\
+    \ It is useful in multithreaded applications when you can run\n * curl_easy_duphandle()\
+    \ for each new thread to avoid a series of identical\n * curl_easy_setopt() invokes\
+    \ in every thread.\n */\nCURL *curl_easy_duphandle(CURL *curl);"
+- "name": curl_easy_option_by_name
+  "params":
+  - "name": name
+    "type": char
+  "return_type": struct curl_easyoption
+  "signature": '
+
+    const struct curl_easyoption *
+
+    curl_easy_option_by_name(const char *name);'
+- "name": curl_easy_option_by_id
+  "params":
+  - "name": id
+    "type": CURLoption
+  "return_type": struct curl_easyoption
+  "signature": '
+
+    const struct curl_easyoption *
+
+    curl_easy_option_by_id(CURLoption id);'
+- "name": curl_easy_option_next
+  "params":
+  - "name": prev
+    "type": struct curl_easyoption
+  "return_type": struct curl_easyoption
+  "signature": '
+
+    const struct curl_easyoption *
+
+    curl_easy_option_next(const struct curl_easyoption *prev);'
+"language": "c++"
+"project": "curl"
+"target_name": "fuzz_url"
+"target_path": "/src/curl_fuzzer/fuzz_url.cc"
