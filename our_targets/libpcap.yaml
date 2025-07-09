@@ -1,0 +1,860 @@
+"functions":
+- "name": pcap_next_etherent
+  "params":
+  - "name": fp
+    "type": struct _IO_FILE
+  "return_type": struct pcap_etherent
+  "signature": "\nPCAP_API struct\tpcap_etherent *pcap_next_etherent(FILE *);"
+- "name": pcap_nametoaddr
+  "params":
+  - "name": name
+    "type": char
+  "return_type": unsigned int
+  "signature": '
+
+    PCAP_API
+
+    PCAP_DEPRECATED("this is not reentrant;'
+- "name": pcap_nametoaddrinfo
+  "params":
+  - "name": name
+    "type": char
+  "return_type": struct addrinfo
+  "signature": '
+
+    PCAP_API struct addrinfo *pcap_nametoaddrinfo(const char *);'
+- "name": pcap_nametonetaddr
+  "params":
+  - "name": name
+    "type": char
+  "return_type": unsigned int
+  "signature": '
+
+    PCAP_API bpf_u_int32 pcap_nametonetaddr(const char *);'
+- "name": pcap_nametoport
+  "params":
+  - "name": name
+    "type": char
+  - "name": port
+    "type": int
+  - "name": proto
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_nametoport(const char *, int *, int *);"
+- "name": pcap_nametoportrange
+  "params":
+  - "name": name
+    "type": char
+  - "name": port1
+    "type": int
+  - "name": port2
+    "type": int
+  - "name": proto
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_nametoportrange(const char *, int *, int *, int\
+    \ *);"
+- "name": pcap_nametoproto
+  "params":
+  - "name": str
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_nametoproto(const char *);"
+- "name": pcap_nametoeproto
+  "params":
+  - "name": s
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_nametoeproto(const char *);"
+- "name": pcap_nametollc
+  "params":
+  - "name": s
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_nametollc(const char *);"
+- "name": pcap_ether_aton
+  "params":
+  - "name": s
+    "type": char
+  "return_type": unsigned char
+  "signature": '
+
+    PCAP_API u_char *pcap_ether_aton(const char *);'
+- "name": pcap_ether_hostton
+  "params":
+  - "name": name
+    "type": char
+  "return_type": unsigned char
+  "signature": '
+
+    PCAP_API u_char *pcap_ether_hostton(const char*);'
+- "name": bpf_image
+  "params":
+  - "name": p
+    "type": struct bpf_insn
+  - "name": n
+    "type": int
+  "return_type": char
+  "signature": "\nPCAP_API char\t*bpf_image(const struct bpf_insn *, int);"
+- "name": bpf_filter
+  "params":
+  - "name": pc
+    "type": struct bpf_insn
+  - "name": p
+    "type": unsigned char
+  - "name": wirelen
+    "type": unsigned int
+  - "name": buflen
+    "type": unsigned int
+  "return_type": unsigned int
+  "signature": "\nPCAP_DEPRECATED(\"use pcap_offline_filter()\")\nPCAP_API u_int\t\
+    bpf_filter(const struct bpf_insn *, const u_char *, u_int, u_int);"
+- "name": bpf_validate
+  "params":
+  - "name": f
+    "type": struct bpf_insn
+  - "name": len
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tbpf_validate(const struct bpf_insn *f, int len);"
+- "name": bpf_dump
+  "params":
+  - "name": p
+    "type": struct bpf_program
+  - "name": option
+    "type": int
+  "return_type": void
+  "signature": "\nPCAP_API void\tbpf_dump(const struct bpf_program *, int);"
+- "name": pcap_dump_open_append
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": fname
+    "type": char
+  "return_type": struct pcap_dumper
+  "signature": '
+
+    PCAP_API pcap_dumper_t *pcap_dump_open_append(pcap_t *, const char *);'
+- "name": pcap_dump_file
+  "params":
+  - "name": p
+    "type": struct pcap_dumper
+  "return_type": struct _IO_FILE
+  "signature": "\nPCAP_API FILE\t*pcap_dump_file(pcap_dumper_t *);"
+- "name": pcap_dump_ftell
+  "params":
+  - "name": p
+    "type": struct pcap_dumper
+  "return_type": long
+  "signature": "\nPCAP_API long\tpcap_dump_ftell(pcap_dumper_t *);"
+- "name": pcap_dump_ftell64
+  "params":
+  - "name": p
+    "type": struct pcap_dumper
+  "return_type": long
+  "signature": "\nPCAP_API int64_t\tpcap_dump_ftell64(pcap_dumper_t *);"
+- "name": pcap_dump_flush
+  "params":
+  - "name": p
+    "type": struct pcap_dumper
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_dump_flush(pcap_dumper_t *);"
+- "name": pcap_dump_close
+  "params":
+  - "name": p
+    "type": struct pcap_dumper
+  "return_type": void
+  "signature": "\nPCAP_API void\tpcap_dump_close(pcap_dumper_t *);"
+- "name": pcap_dump
+  "params":
+  - "name": user
+    "type": unsigned char
+  - "name": h
+    "type": struct pcap_pkthdr
+  - "name": sp
+    "type": unsigned char
+  "return_type": void
+  "signature": "\nPCAP_API void\tpcap_dump(u_char *, const struct pcap_pkthdr *, const\
+    \ u_char *);"
+- "name": pcap_dump_open
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": fname
+    "type": char
+  "return_type": struct pcap_dumper
+  "signature": '
+
+    PCAP_API pcap_dumper_t *pcap_dump_open(pcap_t *, const char *);'
+- "name": pcap_dump_fopen
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": f
+    "type": struct _IO_FILE
+  "return_type": struct pcap_dumper
+  "signature": '
+
+    PCAP_API pcap_dumper_t *pcap_dump_fopen(pcap_t *, FILE *fp);'
+- "name": pcap_freealldevs
+  "params":
+  - "name": alldevs
+    "type": struct pcap_if
+  "return_type": void
+  "signature": "\nPCAP_API void\tpcap_freealldevs(pcap_if_t *);"
+- "name": pcap_lookupdev
+  "params":
+  - "name": errbuf
+    "type": char
+  "return_type": char
+  "signature": "\nPCAP_DEPRECATED(\"use 'pcap_findalldevs' and use the first device\"\
+    )\nPCAP_API char\t*pcap_lookupdev(char *);"
+- "name": pcap_lookupnet
+  "params":
+  - "name": device
+    "type": char
+  - "name": netp
+    "type": unsigned int
+  - "name": maskp
+    "type": unsigned int
+  - "name": errbuf
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_lookupnet(const char *, bpf_u_int32 *, bpf_u_int32\
+    \ *,\n\t    char *) PCAP_NONNULL(4) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_createsrcstr
+  "params":
+  - "name": source
+    "type": char
+  - "name": type
+    "type": int
+  - "name": host
+    "type": char
+  - "name": port
+    "type": char
+  - "name": name
+    "type": char
+  - "name": errbuf
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_createsrcstr(char *source, int type, const char\
+    \ *host,\n\t    const char *port, const char *name, char *errbuf)\n\t    PCAP_NONNULL(6)\
+    \ PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_parsesrcstr
+  "params":
+  - "name": source
+    "type": char
+  - "name": type
+    "type": int
+  - "name": host
+    "type": char
+  - "name": port
+    "type": char
+  - "name": name
+    "type": char
+  - "name": errbuf
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_parsesrcstr(const char *source, int *type, char\
+    \ *host,\n\t    char *port, char *name, char *errbuf)\n\t    PCAP_NONNULL(6) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_init
+  "params":
+  - "name": opts
+    "type": unsigned int
+  - "name": errbuf
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_init(unsigned int, char *)\n\t    PCAP_NONNULL(2)\
+    \ PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_create
+  "params":
+  - "name": device
+    "type": char
+  - "name": errbuf
+    "type": char
+  "return_type": struct pcap
+  "signature": "\nPCAP_API pcap_t\t*pcap_create(const char *, char *) PCAP_NONNULL(2);"
+- "name": pcap_set_snaplen
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": snaplen
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_snaplen(pcap_t *, int) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_set_promisc
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": promisc
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_promisc(pcap_t *, int) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_set_rfmon
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": rfmon
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_rfmon(pcap_t *, int) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_set_timeout
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": timeout_ms
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_timeout(pcap_t *, int) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_set_tstamp_type
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": tstamp_type
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_tstamp_type(pcap_t *, int) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_set_immediate_mode
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": immediate
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_immediate_mode(pcap_t *, int) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_set_buffer_size
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": buffer_size
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_buffer_size(pcap_t *, int) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_set_tstamp_precision
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": tstamp_precision
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_tstamp_precision(pcap_t *, int)\n\t    PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_get_tstamp_precision
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_get_tstamp_precision(pcap_t *) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_activate
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_activate(pcap_t *) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_open_live
+  "params":
+  - "name": device
+    "type": char
+  - "name": snaplen
+    "type": int
+  - "name": promisc
+    "type": int
+  - "name": to_ms
+    "type": int
+  - "name": errbuf
+    "type": char
+  "return_type": struct pcap
+  "signature": "\nPCAP_API pcap_t\t*pcap_open_live(const char *, int, int, int, char\
+    \ *)\n\t    PCAP_NONNULL(5);"
+- "name": pcap_dispatch
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": cnt
+    "type": int
+  - "name": callback
+    "type": void (unsigned char *, const struct pcap_pkthdr *, const unsigned char
+      *)
+  - "name": user
+    "type": unsigned char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_dispatch(pcap_t *, int, pcap_handler, u_char\
+    \ *)\n\t    PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_loop
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": cnt
+    "type": int
+  - "name": callback
+    "type": void (unsigned char *, const struct pcap_pkthdr *, const unsigned char
+      *)
+  - "name": user
+    "type": unsigned char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_loop(pcap_t *, int, pcap_handler, u_char *)\n\
+    \t    PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_breakloop
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": void
+  "signature": "\nPCAP_API void\tpcap_breakloop(pcap_t *);"
+- "name": pcap_datalink
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_datalink(pcap_t *);"
+- "name": pcap_datalink_ext
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_datalink_ext(pcap_t *);"
+- "name": pcap_list_datalinks
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": dlt_buffer
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_list_datalinks(pcap_t *, int **);"
+- "name": pcap_free_datalinks
+  "params":
+  - "name": dlt_list
+    "type": int
+  "return_type": void
+  "signature": "\nPCAP_API void\tpcap_free_datalinks(int *);"
+- "name": pcap_set_datalink
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": dlt
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_datalink(pcap_t *, int) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_datalink_name_to_val
+  "params":
+  - "name": name
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_datalink_name_to_val(const char *);"
+- "name": pcap_datalink_val_to_name
+  "params":
+  - "name": dlt
+    "type": int
+  "return_type": char
+  "signature": '
+
+    PCAP_API const char *pcap_datalink_val_to_name(int);'
+- "name": pcap_datalink_val_to_description
+  "params":
+  - "name": dlt
+    "type": int
+  "return_type": char
+  "signature": '
+
+    PCAP_API const char *pcap_datalink_val_to_description(int);'
+- "name": pcap_datalink_val_to_description_or_dlt
+  "params":
+  - "name": dlt
+    "type": int
+  "return_type": char
+  "signature": '
+
+    PCAP_API const char *pcap_datalink_val_to_description_or_dlt(int);'
+- "name": pcap_tstamp_type_name_to_val
+  "params":
+  - "name": name
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_tstamp_type_name_to_val(const char *);"
+- "name": pcap_tstamp_type_val_to_name
+  "params":
+  - "name": tstamp_type
+    "type": int
+  "return_type": char
+  "signature": '
+
+    PCAP_API const char *pcap_tstamp_type_val_to_name(int);'
+- "name": pcap_tstamp_type_val_to_description
+  "params":
+  - "name": tstamp_type
+    "type": int
+  "return_type": char
+  "signature": '
+
+    PCAP_API const char *pcap_tstamp_type_val_to_description(int);'
+- "name": pcap_snapshot
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_snapshot(pcap_t *);"
+- "name": pcap_is_swapped
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_is_swapped(pcap_t *);"
+- "name": pcap_major_version
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_major_version(pcap_t *);"
+- "name": pcap_minor_version
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_minor_version(pcap_t *);"
+- "name": pcap_bufsize
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_bufsize(pcap_t *);"
+- "name": pcap_file
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": struct _IO_FILE
+  "signature": "\nPCAP_API FILE\t*pcap_file(pcap_t *);"
+- "name": pcap_fileno
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_fileno(pcap_t *);"
+- "name": pcap_get_selectable_fd
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_get_selectable_fd(pcap_t *);"
+- "name": pcap_get_required_select_timeout
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": struct timeval
+  "signature": '
+
+    PCAP_API const struct timeval *pcap_get_required_select_timeout(pcap_t *);'
+- "name": pcap_perror
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": prefix
+    "type": char
+  "return_type": void
+  "signature": "\nPCAP_API void\tpcap_perror(pcap_t *, const char *);"
+- "name": pcap_geterr
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": char
+  "signature": "\nPCAP_API char\t*pcap_geterr(pcap_t *);"
+- "name": pcap_getnonblock
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": errbuf
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_getnonblock(pcap_t *, char *);"
+- "name": pcap_setnonblock
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": nonblock
+    "type": int
+  - "name": errbuf
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_setnonblock(pcap_t *, int, char *)\n\t     PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_statustostr
+  "params":
+  - "name": errnum
+    "type": int
+  "return_type": char
+  "signature": '
+
+    PCAP_API const char *pcap_statustostr(int);'
+- "name": pcap_strerror
+  "params":
+  - "name": errnum
+    "type": int
+  "return_type": char
+  "signature": '
+
+    PCAP_API const char *pcap_strerror(int);'
+- "name": pcap_setfilter
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": fp
+    "type": struct bpf_program
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_setfilter(pcap_t *, struct bpf_program *)\n\t\
+    \     PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_setdirection
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": d
+    "type": pcap_direction_t
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_setdirection(pcap_t *, pcap_direction_t)\n\t\
+    \     PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_stats
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": ps
+    "type": struct pcap_stat
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_stats(pcap_t *, struct pcap_stat *)\n\t    PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_sendpacket
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": buf
+    "type": unsigned char
+  - "name": size
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_sendpacket(pcap_t *, const u_char *, int)\n\t\
+    \    PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_inject
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": buf
+    "type": void
+  - "name": size
+    "type": unsigned long
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_inject(pcap_t *, const void *, size_t)\n\t  \
+    \  PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_close
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": void
+  "signature": "\nPCAP_API void\tpcap_close(pcap_t *);"
+- "name": pcap_offline_filter
+  "params":
+  - "name": fp
+    "type": struct bpf_program
+  - "name": h
+    "type": struct pcap_pkthdr
+  - "name": pkt
+    "type": unsigned char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_offline_filter(const struct bpf_program *,\n\t\
+    \    const struct pcap_pkthdr *, const u_char *);"
+- "name": pcap_open_dead_with_tstamp_precision
+  "params":
+  - "name": linktype
+    "type": int
+  - "name": snaplen
+    "type": int
+  - "name": precision
+    "type": unsigned int
+  "return_type": struct pcap
+  "signature": "\nPCAP_API pcap_t\t*pcap_open_dead_with_tstamp_precision(int, int,\
+    \ u_int);"
+- "name": pcap_open_dead
+  "params":
+  - "name": linktype
+    "type": int
+  - "name": snaplen
+    "type": int
+  "return_type": struct pcap
+  "signature": "\nPCAP_API pcap_t\t*pcap_open_dead(int, int);"
+- "name": pcap_findalldevs_ex
+  "params":
+  - "name": source
+    "type": char
+  - "name": auth
+    "type": struct pcap_rmtauth
+  - "name": alldevs
+    "type": struct pcap_if
+  - "name": errbuf
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_findalldevs_ex(const char *source,\n\t    struct\
+    \ pcap_rmtauth *auth, pcap_if_t **alldevs, char *errbuf)\n\t    PCAP_NONNULL(4)\
+    \ PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_can_set_rfmon
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_can_set_rfmon(pcap_t *);"
+- "name": pcap_open
+  "params":
+  - "name": source
+    "type": char
+  - "name": snaplen
+    "type": int
+  - "name": flags
+    "type": int
+  - "name": read_timeout
+    "type": int
+  - "name": auth
+    "type": struct pcap_rmtauth
+  - "name": errbuf
+    "type": char
+  "return_type": struct pcap
+  "signature": "\nPCAP_API pcap_t\t*pcap_open(const char *source, int snaplen, int\
+    \ flags,\n\t    int read_timeout, struct pcap_rmtauth *auth, char *errbuf)\n\t\
+    \    PCAP_NONNULL(6);"
+- "name": pcap_list_tstamp_types
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": tstamp_typesp
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_list_tstamp_types(pcap_t *, int **);"
+- "name": pcap_setsampling
+  "params":
+  - "name": p
+    "type": struct pcap
+  "return_type": struct pcap_samp
+  "signature": '
+
+    PCAP_API struct pcap_samp *pcap_setsampling(pcap_t *p);'
+- "name": pcap_free_tstamp_types
+  "params":
+  - "name": tstamp_type_list
+    "type": int
+  "return_type": void
+  "signature": "\nPCAP_API void\tpcap_free_tstamp_types(int *);"
+- "name": pcap_next
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": h
+    "type": struct pcap_pkthdr
+  "return_type": unsigned char
+  "signature": '
+
+    PCAP_API const u_char *pcap_next(pcap_t *, struct pcap_pkthdr *);'
+- "name": pcap_next_ex
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": pkt_header
+    "type": struct pcap_pkthdr
+  - "name": pkt_data
+    "type": unsigned char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_next_ex(pcap_t *, struct pcap_pkthdr **, const\
+    \ u_char **);"
+- "name": pcap_findalldevs
+  "params":
+  - "name": alldevsp
+    "type": struct pcap_if
+  - "name": errbuf
+    "type": char
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_findalldevs(pcap_if_t **, char *)\n\t    PCAP_NONNULL(2)\
+    \ PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_compile_nopcap
+  "params":
+  - "name": snaplen_arg
+    "type": int
+  - "name": linktype_arg
+    "type": int
+  - "name": program
+    "type": struct bpf_program
+  - "name": buf
+    "type": char
+  - "name": optimize
+    "type": int
+  - "name": mask
+    "type": unsigned int
+  "return_type": int
+  "signature": "\nPCAP_DEPRECATED(\"use pcap_open_dead(), pcap_compile() and pcap_close()\"\
+    )\nPCAP_API int\tpcap_compile_nopcap(int, int, struct bpf_program *,\n\t    const\
+    \ char *, int, bpf_u_int32) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_freecode
+  "params":
+  - "name": program
+    "type": struct bpf_program
+  "return_type": void
+  "signature": "\nPCAP_API void\tpcap_freecode(struct bpf_program *);"
+- "name": pcap_compile
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": program
+    "type": struct bpf_program
+  - "name": buf
+    "type": char
+  - "name": optimize
+    "type": int
+  - "name": mask
+    "type": unsigned int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_compile(pcap_t *, struct bpf_program *, const\
+    \ char *, int,\n\t    bpf_u_int32) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_open_offline_with_tstamp_precision
+  "params":
+  - "name": fname
+    "type": char
+  - "name": precision
+    "type": unsigned int
+  - "name": errbuf
+    "type": char
+  "return_type": struct pcap
+  "signature": "\nPCAP_API pcap_t\t*pcap_open_offline_with_tstamp_precision(const\
+    \ char *, u_int,\n\t    char *) PCAP_NONNULL(3);"
+- "name": pcap_open_offline
+  "params":
+  - "name": fname
+    "type": char
+  - "name": errbuf
+    "type": char
+  "return_type": struct pcap
+  "signature": "\nPCAP_API pcap_t\t*pcap_open_offline(const char *, char *) PCAP_NONNULL(2);"
+- "name": pcap_fopen_offline_with_tstamp_precision
+  "params":
+  - "name": fp
+    "type": struct _IO_FILE
+  - "name": precision
+    "type": unsigned int
+  - "name": errbuf
+    "type": char
+  "return_type": struct pcap
+  "signature": "\nPCAP_API pcap_t\t*pcap_fopen_offline_with_tstamp_precision(FILE\
+    \ *,\n\t    u_int, char *) PCAP_NONNULL(3);"
+- "name": pcap_fopen_offline
+  "params":
+  - "name": fp
+    "type": struct _IO_FILE
+  - "name": errbuf
+    "type": char
+  "return_type": struct pcap
+  "signature": "\nPCAP_API pcap_t\t*pcap_fopen_offline(FILE *, char *) PCAP_NONNULL(2);"
+- "name": pcap_set_protocol_linux
+  "params":
+  - "name": p
+    "type": struct pcap
+  - "name": protocol
+    "type": int
+  "return_type": int
+  "signature": "\nPCAP_API int\tpcap_set_protocol_linux(pcap_t *, int) PCAP_WARN_UNUSED_RESULT;"
+- "name": pcap_lib_version
+  "params": []
+  "return_type": char
+  "signature": '
+
+    PCAP_API const char *pcap_lib_version(void);'
+"language": "c++"
+"project": "libpcap"
+"target_name": "fuzz_filter"
+"target_path": "/src/libpcap/testprogs/fuzz/fuzz_filter.c"
